@@ -12,7 +12,7 @@ module.exports = {
     path: path.join(__dirname, "/client/dist/js"),
     filename: "app.js"
   },
-
+  devtool: "source-map",
   module: {
     loaders: [
       {

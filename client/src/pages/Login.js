@@ -27,13 +27,6 @@ export default class Login extends Component {
       <div>
         <Navigation />
         <Container className="login-box">
-          <h3>
-            <br />o o
-            <br /> |
-            <br />\____/
-            <br />
-            <br />
-          </h3>
           <Button
             color="secondary"
             onClick={this.loginToADFS.bind(this)}
@@ -41,20 +34,6 @@ export default class Login extends Component {
           >
             Login with ADFS
           </Button>{" "}
-          <Button
-            color="primary"
-            onClick={this.loginToFacebook.bind(this)}
-            className="cursor-pointer"
-          >
-            <FaFacebook className="icon-position-fix" /> Login with Facebook
-          </Button>{" "}
-          <Button
-            color="success"
-            onClick={this.loginToGoogle.bind(this)}
-            className="cursor-pointer"
-          >
-            <FaGoogle className="icon-position-fix" /> Login with Google
-          </Button>
         </Container>
       </div>
     )

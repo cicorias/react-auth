@@ -41,7 +41,7 @@ export default class Navigation extends Component {
       const user = JSON.parse(localStorage.getItem("user"))
       console.log(`**(Nav) User found in local storage...`)
       this.setState({
-        firstName: user.first_name,
+        firstName: user.first_name || user.email,
         lastName: user.last_name,
         loginName: user.email
       })
@@ -56,7 +56,7 @@ export default class Navigation extends Component {
           const { first_name, last_name, email } = response.data.user
           localStorage.setItem("user", JSON.stringify(response.data.user))
           this.setState({
-            firstName: first_name,
+            firstName: first_name || email,
             lastName: last_name,
             loginName: email
           })

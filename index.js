@@ -6,7 +6,11 @@ const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser")
 const session = require("express-session")
 
+require('dotenv').config()
+
 const serverPort = require("./server/config/config").serverPort
+const sessionSecret = require("./server/config/config").jwtSecret
+const cookieSettings = require("./server/config/config").cookieSettings
 
 const port = process.env.PORT || serverPort
 
@@ -17,7 +21,7 @@ app.use(cookieParser())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
-app.use(session({ secret: "verySecret", cookie: { maxAge: 3600000 } }))
+app.use(session({ secret: sessionSecret, cookie: cookieSettings }))
 
 app.use(express.static("./server/static/"))
 app.use(express.static("./client/dist/"))

@@ -1,41 +1,22 @@
 const hostUrl = require("../../client/src/config/config").apiUrl
-
+/* 
+ * create a `.env` file with environment variables in order to laod at runtime.
+*/
 var config = {
-  databaseConfig: {
-    // MS SQL database config
-    user: "",
-    password: "",
-    server: "",
-    database: "",
-    options: {
-      encrypt: true // Use this if you're on Windows Azure
-    },
-    requestTimeout: 60000
-  },
-  databaseTable: "", // Database table name to register users e.g. [dbo].[users]
   azureApp: {
     // Azure Application details
-    base: "https://login.microsoftonline.com/",
-    clientID: "",
-    clientSecret: "",
+    base: process.env.AAD_AUTH_URL || "https://login.microsoftonline.com/",
+    clientID: process.env.AAD_AUTH_CLIENTID || "45abfc7e-4e11-44ea-8d9a-e0dab00c0e3d",
+    clientSecret: process.env.AAD_AUTH_CLIENTSECRET ||  "NOT A REAL SECRET",
     callbackUri: hostUrl + "/auth/cbAdfs",
-    resource: "https://graph.microsoft.com/",
-    tenant: ""
+    resource: process.env.MS_GRAPH_URL || "https://graph.microsoft.com/",
+    tenant: process.env.AAD_AUTH_TENANT || "csenyc.onmicrosoft.com"
   },
-  facebookApp: {
-    // Facebook Application details
-    clientID: "",
-    clientSecret: "",
-    callbackUrl: hostUrl + "/auth/cbFacebook"
+  jwtSecret: process.env.APP_SESSION_SECRET || "big Secret",
+  cookieSettings: {
+    maxAge: 360000
   },
-  googleApp: {
-    // Google Application details
-    clientID: "",
-    clientSecret: "",
-    callbackUrl: hostUrl + "/auth/cbGoogle"
-  },
-  jwtSecret: "big Secret",
-  serverPort: 8080
+  serverPort: process.env.PORT || 8080
 }
 
 module.exports = config
