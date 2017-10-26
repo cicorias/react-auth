@@ -1,28 +1,24 @@
-import React, { Component } from "react"
-import { Container, Button } from "reactstrap"
-
-import Navigation from "../components/Navigation"
-
-import FaFacebook from "react-icons/lib/fa/facebook-official"
-import FaGoogle from "react-icons/lib/fa/google"
+import React, { Component } from 'react'
+import { Container, Button } from 'reactstrap'
+import Navigation from '../components/Navigation'
 
 export default class Login extends Component {
-  loginToADFS(e) {
+  loginToADFS (e) {
     e.preventDefault()
-    window.location = "/auth/login-adfs"
+    window.location = '/auth/login-adfs'
   }
 
-  loginToFacebook(e) {
+  loginToFacebook (e) {
     e.preventDefault()
-    window.location = "/auth/login-facebook"
+    window.location = '/auth/login-facebook'
   }
 
-  loginToGoogle(e) {
+  loginToGoogle (e) {
     e.preventDefault()
-    window.location = "/auth/login-google"
+    window.location = '/auth/login-google'
   }
 
-  render() {
+  render () {
     return (
       <div>
         <Navigation />
@@ -33,7 +29,7 @@ export default class Login extends Component {
             className="cursor-pointer"
           >
             Login with ADFS
-          </Button>{" "}
+          </Button>{' '}
         </Container>
       </div>
     )

@@ -1,28 +1,27 @@
-const jwt = require("jsonwebtoken")
+const jwt = require('jsonwebtoken')
 
 module.exports = function (
-  access_token,
-  refresh_token,
+  accessToken,
+  refreshToken,
   params,
   profile,
   done
 ) {
   console.log(`**Passport ADFS strategy...`)
-  const user_profile = jwt.decode(params.id_token, "", true)
+  const userProfile = jwt.decode(params.id_token, '', true)
   // New user
   console.log(`**New ADFS user...`)
 
-  console.log(JSON.stringify(user_profile))
+  console.log(JSON.stringify(userProfile))
 
   var user = {
-    id: user_profile.aud,
-    groups: user_profile.groups,
-    email: user_profile.unique_name,
-    first_name: user_profile.given_name,
-    last_name: user_profile.family_name,
-    provider: "adfs"
+    id: userProfile.aud,
+    groups: userProfile.groups,
+    email: userProfile.unique_name,
+    first_name: userProfile.given_name,
+    last_name: userProfile.family_name,
+    provider: 'adfs'
   }
-
 
   console.log(`**ADFS user added...`)
   return done(null, user)

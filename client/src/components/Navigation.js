@@ -1,4 +1,4 @@
-import React, { Component } from "react"
+import React, { Component } from 'react'
 import {
   Collapse,
   Navbar,
@@ -8,16 +8,15 @@ import {
   NavItem,
   NavLink,
   Container
-} from "reactstrap"
-import axios from "axios"
+} from 'reactstrap'
 
-import config from "../config/config"
-
-import MdHome from "react-icons/lib/md/blur-on"
-import MdPage from "react-icons/lib/md/bookmark-outline"
+import axios from 'axios'
+import config from '../config/config'
+import MdHome from 'react-icons/lib/md/blur-on'
+import MdPage from 'react-icons/lib/md/bookmark-outline'
 
 export default class Navigation extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
     this.state = {
       firstName: null,
@@ -29,20 +28,20 @@ export default class Navigation extends Component {
     this.toggle = this.toggle.bind(this)
   }
 
-  toggle() {
+  toggle () {
     this.setState({
       isOpen: !this.state.isOpen
     })
   }
 
-  componentWillMount() {
+  componentWillMount () {
     console.log(`**(Nav) Checking local storage...`)
-    if (localStorage.getItem("user")) {
-      const user = JSON.parse(localStorage.getItem("user"))
+    if (localStorage.getItem('user')) {
+      const user = JSON.parse(localStorage.getItem('user'))
       console.log(`**(Nav) User found in local storage...`)
       this.setState({
-        firstName: user.first_name || user.email,
-        lastName: user.last_name,
+        firstName: user.firstName || user.email,
+        lastName: user.lastName,
         loginName: user.email
       })
     } else {
@@ -50,29 +49,29 @@ export default class Navigation extends Component {
         `**(Nav) User not found in local storage. Checking if user is logged in...`
       )
       axios
-        .get(config.apiUrl + "/api/profile")
+        .get(config.apiUrl + '/api/profile')
         .then(response => {
           console.log(`**(Nav) User is logged...`)
-          const { first_name, last_name, email } = response.data.user
-          localStorage.setItem("user", JSON.stringify(response.data.user))
+          const { firstName, lastName, email } = response.data.user
+          localStorage.setItem('user', JSON.stringify(response.data.user))
           this.setState({
-            firstName: first_name || email,
-            lastName: last_name,
+            firstName: firstName || email,
+            lastName: lastName,
             loginName: email
           })
-          window.location.href = "/"
+          window.location.href = '/'
         })
         .catch(err => {
           console.log(
             `**(Nav) User is not logged. Redirecting to login page...`
           )
           console.log(err)
-          window.location.href = "/#/login"
+          window.location.href = '/#/login'
         })
     }
   }
 
-  render() {
+  render () {
     if (this.state.firstName) {
       return this.renderFull()
     } else {
@@ -80,7 +79,7 @@ export default class Navigation extends Component {
     }
   }
 
-  renderFull() {
+  renderFull () {
     return (
       <Navbar color="faded" className="navbar-expand-lg navbar-light bg-light">
         <Container>
@@ -115,7 +114,7 @@ export default class Navigation extends Component {
     )
   }
 
-  renderLogin() {
+  renderLogin () {
     return (
       <Navbar color="faded" className="navbar-expand-lg navbar-light bg-light">
         <Container>

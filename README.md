@@ -1,70 +1,43 @@
-# react-passport-auth
+# React Azure Active Directory and Passport
 
-React front end with Nodejs + Passport.js backend
+> react-azuread-passport
 
+This is an example of using React, Passport, and Azure Active Directory
 
 ## Features
-
-- Write your single page application in ReactJS
-- Add authentication provider of your choice: Facebook, Google or Microsoft's Corporate ADFS
-- Record users in MS SQL database in Azure
-
-
-## Installing
-
-Using npm:
-
-```bash
-$ npm install react-passport-auth
-```
+- Uses React for the SPA
+- Provide your Azure AD Application information in a `.env` file before running.
 
 ## Configuring
 
-All project configuration is stored in two config.js files - one for back end and one for front end.
+### Environment file
+
+provide an environmenbt file based upon your Application setup in Azure Active Directory.
 
 ```
-var config = {
-  databaseConfig: {
-    // MS SQL database config
-    user: "",
-    password: "",
-    server: "",
-    database: "",
-    options: {
-      encrypt: true // Use this if you're on Windows Azure
-    },
-    requestTimeout: 60000
-  },
-  databaseTable: "", // Database table name to register users e.g. [dbo].[users]
-  azureApp: {
-    // Azure Application details
-    base: "https://login.microsoftonline.com/",
-    clientID: "",
-    clientSecret: "",
-    callbackUri: hostUrl + "/auth/cbAdfs",
-    resource: "https://graph.microsoft.com/",
-    tenant: ""
-  },
-  facebookApp: {
-    // Facebook Application details
-    clientID: "",
-    clientSecret: "",
-    callbackUrl: hostUrl + "/auth/cbFacebook"
-  },
-  googleApp: {
-    // Google Application details
-    clientID: "",
-    clientSecret: "",
-    callbackUrl: hostUrl + "/auth/cbGoogle"
-  },
-  jwtSecret: "big Secret",
-  serverPort: 8080
-}
+AAD_AUTH_URL=https://login.microsoftonline.com/
+AAD_AUTH_CLIENTID=Application ID
+AAD_AUTH_CLIENTSECRET=Secret Generated from Azure Porta
+AAD_AUTH_TENANT=DNS name of your tenant
+MS_GRAPH_URL=https://graph.microsoft.com/
+APP_SESSION_SECRET=some word just use to validate session id in passport
 ```
 
-## Usage
+By default if no `.env` file is used, the `config.js` files are used.  
 
-When all authentication sources and Azure SQL database is configured you should be able to start the server and test it.
+
+## Running
+
+> NOTE: the commands below rely on `npx` which is part of `npm 5+`.  
+
+```
+git clone https://github.com/cicorias/react-azuread-passport myapp
+cd myapp
+npm install
+npm run bundle
+npm start
+
+```
 
 ### Development mode
 

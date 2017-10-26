@@ -1,8 +1,8 @@
-const AzureOAuth2Strategy = require("passport-azure-ad-oauth2")
+const AzureOAuth2Strategy = require('passport-azure-ad-oauth2')
 
-const config = require("../config/config")
+const config = require('../config/config')
 
-const adfsStrategy = require("./passport-adfs")
+const adfsStrategy = require('./passport-adfs')
 module.exports = function (passport) {
   passport.serializeUser((profile, done) => {
     done(null, profile)
@@ -14,7 +14,7 @@ module.exports = function (passport) {
 
   // ADFS signup strategy
   passport.use(
-    "adfs",
+    'adfs',
     new AzureOAuth2Strategy(
       {
         clientID: config.azureApp.clientID,
@@ -23,10 +23,10 @@ module.exports = function (passport) {
         resource: config.azureApp.resource,
         tenant: config.azureApp.tenant
       },
-      (access_token, refresh_token, params, profile, done) =>
+      (accessToken, refreshToken, params, profile, done) =>
         adfsStrategy(
-          access_token,
-          refresh_token,
+          accessToken,
+          refreshToken,
           params,
           profile,
           done

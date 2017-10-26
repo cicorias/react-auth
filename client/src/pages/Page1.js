@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { Container } from "reactstrap"
+import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 
-import Navigation from "../components/Navigation.js"
+import Navigation from '../components/Navigation.js'
 
 export default class Page1 extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Navigation />
