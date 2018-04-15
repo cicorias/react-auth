@@ -1,13 +1,13 @@
-import React, { Component } from "react"
-import { Container, Button } from "reactstrap"
-import axios from "axios"
+import React, { Component } from 'react'
+import { Container, Button } from 'reactstrap'
+import axios from 'axios'
 
-import Navigation from "../components/Navigation"
-import config from "../config/config"
-import logoutUser from "../functions/logoutUser"
+import Navigation from '../components/Navigation'
+import config from '../config/config'
+import logoutUser from '../functions/logoutUser'
 
 export default class Profile extends Component {
-  constructor(props) {
+  constructor (props) {
     super(props)
 
     this.state = {
@@ -18,11 +18,11 @@ export default class Profile extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     console.log(`**(Profile) Loading user details from the server...`)
 
     axios
-      .get(config.apiUrl + "/api/profile")
+      .get(config.apiUrl + '/api/profile')
       .then(response => {
         console.log(`**(Profile) User is logged...`)
         const {
@@ -45,12 +45,12 @@ export default class Profile extends Component {
           `**(Profile) User is not logged. Redirecting to login page...`
         )
         console.log(err)
-        localStorage.removeItem("user")
-        window.location.href = "/#/login"
+        localStorage.removeItem('user')
+        window.location.href = '/#/login'
       })
   }
 
-  render() {
+  render () {
     const { firstName, lastName, loginName, id, provider } = this.state
     return (
       <div>

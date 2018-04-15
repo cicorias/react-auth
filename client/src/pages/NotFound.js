@@ -1,10 +1,10 @@
-import React, { Component } from "react"
-import { Container } from "reactstrap"
+import React, { Component } from 'react'
+import { Container } from 'reactstrap'
 
-import Navigation from "../components/Navigation"
+import Navigation from '../components/Navigation'
 
 export default class NotFound extends Component {
-  render() {
+  render () {
     return (
       <div>
         <Navigation />
